@@ -2,7 +2,7 @@
     "name": "jaggeryjs-extension",
     "title": "Jaggeryjs Brackets Extension",
     "description": "File Format Support for WSO2 Jaggery Development Environment",
-    "version": "1.0.0",
+    "version": "0.0.4",
     "author": "Jerad Rutnam <jeradrutnam@outlook.com> (http://jeradrutnam.com)",
     "license": "MIT",
     "engines": {
