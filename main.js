@@ -27,32 +27,36 @@ define(function (require, exports, module) {
     var LanguageManager = brackets.getModule("language/LanguageManager"),
         CodeMirror      = brackets.getModule("thirdparty/CodeMirror/lib/codemirror");
 
-    brackets.getModule(["thirdparty/CodeMirror/mode/handlebars/handlebars", "thirdparty/CodeMirror/mode/javascript/javascript"], function () {
+    brackets.getModule([
+      "thirdparty/CodeMirror/mode/handlebars/handlebars",
+      "thirdparty/CodeMirror/mode/javascript/javascript"], function () {
         
-        CodeMirror.defineMode("jaggery", function (config) {
-        	return CodeMirror.multiplexingMode(
-                CodeMirror.getMode(config, "text/html"),
-                {
-                    open: "<%",
-                    close: "%>",
-                    mode: CodeMirror.getMode(config, "javascript"),
-                    parseDelimiters: true
-                },
-                {
-                    open: "{{",
-                    close: "}}",
-                    mode: CodeMirror.getMode(config, "handlebars"),
-                    parseDelimiters: true
-                }
-            );
-        });
-        
-        CodeMirror.defineMIME("text/x-jaggery", "jaggery");
+      CodeMirror.defineMode("jaggery", function (config) {
+        return CodeMirror.multiplexingMode(
+          CodeMirror.getMode(config, "text/html"),
+          {
+            open: "<%",
+            close: "%>",
+            mode: CodeMirror.getMode(config, "javascript"),
+            parseDelimiters: true
+          },
+          {
+            open: "{{",
+            close: "}}",
+            mode: CodeMirror.getMode(config, "handlebars"),
+            parseDelimiters: true
+          }
+        );
+      });
+
+      CodeMirror.defineMIME("text/x-jaggery", "jaggery");
     
 	    LanguageManager.defineLanguage("jaggery", {
-	        name: "Jaggery",
-	        mode: ["jaggery", "text/x-jaggery"],
-	        fileExtensions: ["jag"]
+        name: "Jaggery",
+        mode: ["jaggery", "text/x-jaggery"],
+        fileExtensions: ["jag"]
 	    });
+      
+      LanguageManager.getLanguage("json").addFileName("jaggery.conf");
     });
 });
